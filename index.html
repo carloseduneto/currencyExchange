@@ -5,9 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Exchange</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Adicione esses links no <head> do seu HTML -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>    
 </head>
 <body>
     <div class="exchange"></div>
+    <input list="currency1" oninput="changeCurrency1()" id="c1" placeholder="Selecione uma moeda">
+    <datalist name="" id="currency1" class="currencies" selected="Selecione">
+    </datalist>
+    <br>
+    <select name="" id="currency2" class="currencies">
+        <option value="BRL">Real</option>
+        <option value="USD">Dólar</option>
+        <option value="EUR">Euro</option>
+    </select>
+<br>
+    <select name="" id="currency3" class="currencies">
+    </select>
+
     <script src="script.js"></script>
+
+    <br>
+    <a href="https://github.com/fawazahmed0/exchange-api">Powered by Currency-api</a>
+
 </body>
 </html>
