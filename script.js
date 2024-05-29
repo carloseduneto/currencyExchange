@@ -51,23 +51,34 @@ async function getFullCurrencies() {
         const dataJSON = await valueFromAPI.json()
         let dataJSONKeys = Object.keys(dataJSON)
         let dataJSONValues = Object.values(dataJSON)
-        let options = ` <option value="" selected disabled hidden>Selecione uma moeda</option>`;
+        let options = ""
+        //` <option value="" selected disabled hidden>Selecione uma moeda</option>`;
 
         for (let i = 0; i < dataJSONKeys.length; i++) {
             const keys = dataJSONKeys[i].toUpperCase();
             const values = dataJSONValues[i]
-            if(values != ""){
+            /*if(values != ""){
                 options += `<option value="${(keys)}">${(values)}</option>` 
                 // console.log(keys + " " + values)
 
+            }*/
+
+            if(values !=""){
+                options +=  `
+                <div >
+                <input type="radio" id="huey" name="drone" value="Huey" />
+                <label for="huey">${(values)}</label>
+            </div>
+                `
             }
         }
 
-        // currency1.innerHTML = options
+        /*currency1.innerHTML = options
         console.log(options)
         currencies[0].innerHTML = options
         currencies[1].innerHTML = options
-        currencies[2].innerHTML = options
+        currencies[2].innerHTML = options*/
+        currencies[3].innerHTML = options
 
 
 
@@ -93,5 +104,12 @@ $(document).ready(function() {
     $('#currency2').select2({
         placeholder: "Selecione uma moeda",
         allowClear: true
+    });
+});
+
+
+document.querySelectorAll('input[name="drone"]').forEach((radio) => {
+    radio.addEventListener('change', function() {
+        document.getElementById('selectedValue').textContent = `Selected value: ${this.value}`;
     });
 });
