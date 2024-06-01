@@ -12,7 +12,7 @@
 </head>
 <body>
     <div class="exchange"></div>
-    <input list="currency1" oninput="changeCurrency1()" id="c1" placeholder="Selecione uma moeda">
+    <!-- <input list="currency1" oninput="changeCurrency1()" id="c1" placeholder="Selecione uma moeda">
     <datalist name="" id="currency1" class="currencies" selected="Selecione">
     </datalist>
     <br>
@@ -23,9 +23,17 @@
     </select>
 <br>
     <select name="" id="currency3" class="currencies">
-    </select>
+    </select> -->
+    
 
-    <fieldset>
+
+    <dialog class="modal">
+        <div class="money currencies">            
+            <input type="button" value="A" name="S">
+        </div>
+    </dialog>
+
+    <!-- <fieldset>
         <legend>Select a maintenance drone:</legend>
         <div id="currency4" class="currencies">
 
@@ -45,14 +53,14 @@
                 <label for="louie">Louie</label>
             </div>
         </div>
-    </fieldset>
+    </fieldset> -->
 
-    <p id="selectedValue">Selected value: huey</p>
+    <!-- <p id="selectedValue">Selected value: huey</p> -->
 
     <script src="script.js"></script>
 
     <br>
-    <a href="https://github.com/fawazahmed0/exchange-api">Powered by Currency-api</a>
+    <!-- <a href="https://github.com/fawazahmed0/exchange-api">Powered by Currency-api</a> -->
 
 </body>
 </html>
