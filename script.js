@@ -180,8 +180,8 @@ let currencyExchangePTBR = {
 "PLN":"Zloty"
 }
 
-
-
+let buttonValue2 = ""
+getType()
 
 async function currencyExchange(exchange, exchange2, date) {
     // let date = "latest"; //or YYYY-MM-DD
@@ -202,6 +202,10 @@ async function currencyExchange(exchange, exchange2, date) {
 let currentDate = new Date()
 
 
+function registrySearch() {
+
+
+}
 
 let date1 = `${(currentDate.getFullYear())}-0${(currentDate.getMonth())}-${(currentDate.getDate())-2}`
 let date2 = `${(currentDate.getFullYear())}-0${(currentDate.getMonth())}-${(currentDate.getDate())-1}`
@@ -217,7 +221,8 @@ currencyExchange("eur", "brl", "latest")
 getFullCurrencies()
 
 async function getFullCurrencies() {
-    let currency1 = document.getElementById("currency1")
+    let Word = document.getElementById("searchPlace").value
+    console.log(Word)
 
     let currencies = document.querySelectorAll(".currencies")
 
@@ -236,7 +241,12 @@ async function getFullCurrencies() {
         let newData 
         let newData2
 
-        let type = "common"
+        let type = buttonValue2
+
+        console.log(type)
+        let searchWord = replaceSpecialCharacter(Word)
+        
+
 
         replaceJSONValues(dataJSON, currencyExchangePTBR)
         newData = inverterChavesValores(dataJSON)
@@ -250,66 +260,56 @@ async function getFullCurrencies() {
         console.log(dataJSON)
         console.log(newData)
 
-
-
-
-        // ` <option value="" selected disabled hidden>Selecione uma moeda</option>`;
-
-        /*let dataConvertered = Object.entries(dataJSON)
-
-        dataConvertered.sort(([, valueA], [, valueB]) => {
-            return valueA.localeCompare(valueB);
-        });
-
-        dataJSON = Object.fromEntries(dataConvertered)*/
-
-        /*
-        
-        Object.entries(currencyExchangePTBR).forEach(([keyPTBR, valuePTBR]) => {
-            // console.log(`${keyPTBR}: ${valuePTBR}`);
-            if (keys == keyPTBR) {
-                // console.log(keys)
-                values = valuePTBR
-            }
-        });*/
+        let count = 0
+        let commonCount = 0
+        let cryptoCount = 0
         for (let i = 0; i < dataJSONKeys.length; i++) {
             const keys = dataJSONKeys[i].toUpperCase();
             let values = dataJSONValues[i]
+            let PTBRValues = replaceSpecialCharacter(values)
             
-            if (values != "") {
-                if (type == "common") {
-                    if (currencyExchangePTBR.hasOwnProperty(keys)) {
-                        options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
-                    }
-                } else if (type == "crypto") {
-                    if (!currencyExchangePTBR.hasOwnProperty(keys)) {
-                        options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
-                    }
-                }
-                // options += `<option value="${(keys)}">${(values)}</option>` 
-                // console.log(keys + " " + values)
-            }
+            if (values != "" &&  (PTBRValues).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
 
-            /*
-            if(values !=""){
-                options +=  `
-                <div >
-                <input type="radio" id="huey" name="drone" value="Huey" />
-                <label for="huey">${(values)}</label>
-            </div>
-                `
-            }*/
+
+                if (type == "common") {
+                    if (currencyExchangePTBR.hasOwnProperty(keys) && (PTBRValues).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
+                        options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
+                        commonCount += 1
+                    }
+  
+                } else if (type == "crypto") {
+                    if (!currencyExchangePTBR.hasOwnProperty(keys) && (values).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
+                        options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
+                        cryptoCount +=1
+                    }
+
+                } else {
+                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br> <hr>`
+                }
+                
+
+                count +=1
+            }
+            
+            
+            
+
+        }
+        console.log(count)
+        console.log(commonCount)
+        console.log(cryptoCount)
+
+        if (count == 0) {
+            options = "<p>Nenhum resultado encontrado :(</p>"
+        }else if (commonCount == 0 && type == "common") {
+           options = "<p>Nenhum resultado encontrado :(</p>"
+        } else if (cryptoCount == 0 && type == "crypto") {
+            options = "<p>Nenhum resultado encontrado :(</p>"
         }
 
-        // currency1.innerHTML = options
-        // console.log(options)
+
         currencies[0].innerHTML = options
-        // currencies[1].innerHTML = options
-        // currencies[2].innerHTML = options
-        // currencies[3].innerHTML = options
-
-
-
+        currencies[1].innerHTML = options
 
     } catch (error) {
         console.error("Error code: ", error)
@@ -317,6 +317,11 @@ async function getFullCurrencies() {
 
 
 }
+
+
+
+
+
 
 function replaceJSONValues(json1, json2) {
     const json2LowerCaseKeys = {}
@@ -376,22 +381,88 @@ $(document).ready(function() {
 });
 
 */
-document.querySelectorAll('input[name="drone"]').forEach((radio) => {
-    radio.addEventListener('change', function() {
-        document.getElementById('selectedValue').textContent = `Selected value: ${this.value}`;
-    });
+function replaceSpecialCharacter(texto) {
+  const charactersMap = {
+      'ã': 'a', 'á': 'a', 'à': 'a', 'â': 'a', 'ä': 'a',
+      'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
+      'í': 'i', 'ì': 'i', 'î': 'i', 'ï': 'i',
+      'ó': 'o', 'ò': 'o', 'ô': 'o', 'ö': 'o', 'õ': 'o',
+      'ú': 'u', 'ù': 'u', 'û': 'u', 'ü': 'u',
+      'ç': 'c', 'ñ': 'n'
+  };
+
+  return texto.split('').map(char => charactersMap[char] || char).join('');
+}
+
+
+// Seleciona o elemento dialog
+const money1 = document.querySelector('.money1');
+const money2 = document.querySelector(".money2")
+
+// Adiciona um event listener ao contêiner (money1)
+money1.addEventListener('click', function(event) {
+    // Verifica se o elemento clicado é um botão de entrada
+    if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
+        // Recupera o valor do botão clicado
+        const buttonValueMoney1 = event.target.name;
+        // Exibe o valor no console
+        console.log('Botão clicado:', buttonValueMoney1);
+    }
 });
 
-        // Seleciona o elemento dialog
-        const modal = document.querySelector('.money');
 
-        // Adiciona um event listener ao contêiner (modal)
-        modal.addEventListener('click', function(event) {
-            // Verifica se o elemento clicado é um botão de entrada
-            if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
-                // Recupera o valor do botão clicado
-                const buttonValue = event.target.name;
-                // Exibe o valor no console
-                console.log('Botão clicado:', buttonValue);
+// Adiciona um event listener ao contêiner (money1)
+money2.addEventListener('click', function(event) {
+    // Verifica se o elemento clicado é um botão de entrada
+    if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
+        // Recupera o valor do botão clicado
+        const buttonValueMoney2 = event.target.name;
+        // Exibe o valor no console
+        console.log('Botão clicado:', buttonValueMoney2);
+    }
+});
+
+
+function getType() {
+    let commonType = document.getElementById("commonType")
+    let cryptoType = document.getElementById("cryptoType")
+    // Seleciona o elemento dialog
+    const types = document.querySelector('.types');
+    
+    // Adiciona um event listener ao contêiner (types)
+    types.addEventListener('click', function(event) {
+        // Verifica se o elemento clicado é um botão de entrada
+        if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
+            // Recupera o valor do botão clicado
+            buttonValue2 = event.target.name;
+
+
+
+            // Exibe o valor no console
+            console.log('Botão clicado:', buttonValue2);
+
+            if (commonType.name == "common" && buttonValue2 == "common"){
+                commonType.name = "all"
+                commonType.style.backgroundColor = "black"
+                commonType.style.color = "white"
+            } else if (commonType.name== "all" && ( buttonValue2 == "all" || buttonValue2 == "crypto")){
+                commonType.name = "common"
+                commonType.style.backgroundColor = "#e7eef5"
+                commonType.style.color = "black"
             }
-        });
+
+            if (cryptoType.name == "crypto" && buttonValue2 == "crypto") {
+                cryptoType.name = "all"
+                cryptoType.style.backgroundColor = "black"
+                cryptoType.style.color="white"
+            } else if(cryptoType.name == "all" && (buttonValue2 == "all" || buttonValue2 == "common")){
+                cryptoType.name = "crypto"
+                cryptoType.style.backgroundColor = "#e7eef5"
+                cryptoType.style.color = "black"
+            }
+
+            
+        }
+    });
+
+}
