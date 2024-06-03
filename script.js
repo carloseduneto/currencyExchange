@@ -180,8 +180,15 @@ let currencyExchangePTBR = {
 "PLN":"Zloty"
 }
 
+let buttonValue1 = ""
 let buttonValue2 = ""
+let currency1 = document.getElementById("currency1")
+let currency2 = document.getElementById("currency2")
+
+let results1 = document.getElementById("results1")
+let results2 = document.getElementById("results2")
 getType()
+getType2()
 
 async function currencyExchange(exchange, exchange2, date) {
     // let date = "latest"; //or YYYY-MM-DD
@@ -194,6 +201,8 @@ async function currencyExchange(exchange, exchange2, date) {
         const data = await response.json()
 
         console.log(data[exchange][exchange2])
+        let value = data[exchange][exchange2]
+        return value
         
     } catch (error) {
         console.error("Error code: ", error)
@@ -218,8 +227,160 @@ currencyExchange("eur", "brl", date1)
 currencyExchange("eur", "brl", date2)
 currencyExchange("eur", "brl", "latest")
 
-getFullCurrencies()
+// getFullCurrencies()
 
+async function fetchCurrenciesExchangeData(url) {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            throw new Error("Error to find currency exchange data")
+        }
+        const data = await response.json()
+        return data
+    } catch (error) {
+        console.error("Error!!!", error)
+    }
+}
+
+function showData(data) {
+    let Word = document.getElementById("searchPlace").value
+    console.log(Word)
+    console.log("AAAAAAAAAAAAA", data)
+    let currencies = document.querySelectorAll(".currencies")
+    let searchWord = replaceSpecialCharacter(Word)
+    let type = buttonValue1
+    let options = ""
+
+    let dataJSONKeys = Object.values(data)
+    let dataJSONValues = Object.keys(data)
+    let count = 0
+        let commonCount = 0
+        let cryptoCount = 0
+        for (let i = 0; i < dataJSONKeys.length; i++) {
+            const keys = dataJSONKeys[i].toUpperCase();
+            let values = dataJSONValues[i]
+            let PTBRValues = replaceSpecialCharacter(values)
+            
+            if (values != "" &&  (PTBRValues).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
+
+
+                if (type == "common") {
+                    if (currencyExchangePTBR.hasOwnProperty(keys) && (PTBRValues).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
+                        options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
+                        commonCount += 1
+                    }
+  
+                } else if (type == "crypto") {
+                    if (!currencyExchangePTBR.hasOwnProperty(keys) && (values).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
+                        options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
+                        cryptoCount +=1
+                    }
+
+                } else {
+                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br> <hr>`
+                }
+                
+
+                count +=1
+            }
+            
+            
+            
+
+        }
+        console.log(count)
+        console.log(commonCount)
+        console.log(cryptoCount)
+
+        if (count == 0) {
+            options = "<p>Nenhum resultado encontrado :(</p>"
+        }else if (commonCount == 0 && type == "common") {
+           options = "<p>Nenhum resultado encontrado :(</p>"
+        } else if (cryptoCount == 0 && type == "crypto") {
+            options = "<p>Nenhum resultado encontrado :(</p>"
+    }
+    
+    currencies[0].innerHTML = options
+
+}
+
+function showData2(data) {
+    let Word = document.getElementById("searchPlace2").value
+    console.log(Word)
+    console.log("AAAAAAAAAAAAA", data)
+    let currencies = document.querySelectorAll(".currencies")
+    let searchWord = replaceSpecialCharacter(Word)
+    let type = buttonValue2
+    let options = ""
+
+    let dataJSONKeys = Object.values(data)
+    let dataJSONValues = Object.keys(data)
+    let count = 0
+        let commonCount = 0
+        let cryptoCount = 0
+        for (let i = 0; i < dataJSONKeys.length; i++) {
+            const keys = dataJSONKeys[i].toUpperCase();
+            let values = dataJSONValues[i]
+            let PTBRValues = replaceSpecialCharacter(values)
+            
+            if (values != "" &&  (PTBRValues).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
+
+
+                if (type == "common") {
+                    if (currencyExchangePTBR.hasOwnProperty(keys) && (PTBRValues).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
+                        options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
+                        commonCount += 1
+                    }
+  
+                } else if (type == "crypto") {
+                    if (!currencyExchangePTBR.hasOwnProperty(keys) && (values).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
+                        options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
+                        cryptoCount +=1
+                    }
+
+                } else {
+                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br> <hr>`
+                }
+                
+
+                count +=1
+            }
+            
+            
+            
+
+        }
+        console.log(count)
+        console.log(commonCount)
+        console.log(cryptoCount)
+
+        if (count == 0) {
+            options = "<p>Nenhum resultado encontrado :(</p>"
+        }else if (commonCount == 0 && type == "common") {
+           options = "<p>Nenhum resultado encontrado :(</p>"
+        } else if (cryptoCount == 0 && type == "crypto") {
+            options = "<p>Nenhum resultado encontrado :(</p>"
+    }
+    
+    currencies[1].innerHTML = options
+
+}
+
+
+async function data1() {
+    let date = "latest"
+    let endpoint = "currencies"
+    const apiURL = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@${date}/${apiVersion}/${endpoint}.json`
+    const data = await fetchCurrenciesExchangeData(apiURL)
+    replaceJSONValues(data, currencyExchangePTBR)
+    let reverseData = inverterChavesValores(data)
+    let alphabeticalData = ordenarJSONAlfabeticamente(reverseData)
+    showData(alphabeticalData)
+    showData2(alphabeticalData)
+}
+
+data1()
+/*
 async function getFullCurrencies() {
     let Word = document.getElementById("searchPlace").value
     console.log(Word)
@@ -241,7 +402,7 @@ async function getFullCurrencies() {
         let newData 
         let newData2
 
-        let type = buttonValue2
+        let type = buttonValue1
 
         console.log(type)
         let searchWord = replaceSpecialCharacter(Word)
@@ -308,8 +469,8 @@ async function getFullCurrencies() {
         }
 
 
-        currencies[0].innerHTML = options
-        currencies[1].innerHTML = options
+        // currencies[0].innerHTML = options
+        // currencies[1].innerHTML = options
 
     } catch (error) {
         console.error("Error code: ", error)
@@ -317,7 +478,7 @@ async function getFullCurrencies() {
 
 
 }
-
+*/
 
 
 
@@ -362,25 +523,6 @@ function ordenarJSONAlfabeticamente(objeto) {
 }
 
 
-/*
-
-function changeCurrency1(){
-
-    let id = document.getElementById('c1')
-    
-    // id = (id).toLowerCase()
-
-    console.log(id)
-}
-
-$(document).ready(function() {
-    $('#currency2').select2({
-        placeholder: "Selecione uma moeda",
-        allowClear: true
-    });
-});
-
-*/
 function replaceSpecialCharacter(texto) {
   const charactersMap = {
       'ã': 'a', 'á': 'a', 'à': 'a', 'â': 'a', 'ä': 'a',
@@ -398,27 +540,37 @@ function replaceSpecialCharacter(texto) {
 // Seleciona o elemento dialog
 const money1 = document.querySelector('.money1');
 const money2 = document.querySelector(".money2")
+let buttonValueMoney1
+let buttonValueMoney2
 
 // Adiciona um event listener ao contêiner (money1)
 money1.addEventListener('click', function(event) {
     // Verifica se o elemento clicado é um botão de entrada
     if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
         // Recupera o valor do botão clicado
-        const buttonValueMoney1 = event.target.name;
+        buttonValueMoney1 = event.target.name;
         // Exibe o valor no console
         console.log('Botão clicado:', buttonValueMoney1);
+        currency1.innerHTML = "▼"+ buttonValueMoney1
     }
 });
 
+value1 = currencyExchange("eur", "usd", "latest")
+
+value2 = currencyExchange(buttonValueMoney2, buttonValueMoney1, "latest")
+console.log(value1)
+results1.innerHTML = value1
+results2.innerHTML = value2
 
 // Adiciona um event listener ao contêiner (money1)
 money2.addEventListener('click', function(event) {
     // Verifica se o elemento clicado é um botão de entrada
     if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
         // Recupera o valor do botão clicado
-        const buttonValueMoney2 = event.target.name;
+        buttonValueMoney2 = event.target.name;
         // Exibe o valor no console
         console.log('Botão clicado:', buttonValueMoney2);
+        currency2.innerHTML = "▼" + buttonValueMoney2
     }
 });
 
@@ -434,6 +586,50 @@ function getType() {
         // Verifica se o elemento clicado é um botão de entrada
         if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
             // Recupera o valor do botão clicado
+            buttonValue1 = event.target.name;
+
+
+
+            // Exibe o valor no console
+            console.log('Botão clicado:', buttonValue1);
+
+            if (commonType.name == "common" && buttonValue1 == "common"){
+                commonType.name = "all"
+                commonType.style.backgroundColor = "black"
+                commonType.style.color = "white"
+            } else if (commonType.name== "all" && ( buttonValue1 == "all" || buttonValue1 == "crypto")){
+                commonType.name = "common"
+                commonType.style.backgroundColor = "#e7eef5"
+                commonType.style.color = "black"
+            }
+
+            if (cryptoType.name == "crypto" && buttonValue1 == "crypto") {
+                cryptoType.name = "all"
+                cryptoType.style.backgroundColor = "black"
+                cryptoType.style.color="white"
+            } else if(cryptoType.name == "all" && (buttonValue1 == "all" || buttonValue1 == "common")){
+                cryptoType.name = "crypto"
+                cryptoType.style.backgroundColor = "#e7eef5"
+                cryptoType.style.color = "black"
+            }
+
+            
+        }
+    });
+
+}
+
+function getType2() {
+    let commonType2 = document.getElementById("commonType2")
+    let cryptoType = document.getElementById("cryptoType2")
+    // Seleciona o elemento dialog
+    const types2 = document.querySelector('.types2');
+    
+    // Adiciona um event listener ao contêiner (types)
+    types2.addEventListener('click', function(event) {
+        // Verifica se o elemento clicado é um botão de entrada
+        if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
+            // Recupera o valor do botão clicado
             buttonValue2 = event.target.name;
 
 
@@ -441,14 +637,14 @@ function getType() {
             // Exibe o valor no console
             console.log('Botão clicado:', buttonValue2);
 
-            if (commonType.name == "common" && buttonValue2 == "common"){
-                commonType.name = "all"
-                commonType.style.backgroundColor = "black"
-                commonType.style.color = "white"
-            } else if (commonType.name== "all" && ( buttonValue2 == "all" || buttonValue2 == "crypto")){
-                commonType.name = "common"
-                commonType.style.backgroundColor = "#e7eef5"
-                commonType.style.color = "black"
+            if (commonType2.name == "common" && buttonValue2 == "common"){
+                commonType2.name = "all"
+                commonType2.style.backgroundColor = "black"
+                commonType2.style.color = "white"
+            } else if (commonType2.name== "all" && ( buttonValue2 == "all" || buttonValue2 == "crypto")){
+                commonType2.name = "common"
+                commonType2.style.backgroundColor = "#e7eef5"
+                commonType2.style.color = "black"
             }
 
             if (cryptoType.name == "crypto" && buttonValue2 == "crypto") {

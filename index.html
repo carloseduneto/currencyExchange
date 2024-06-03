@@ -24,14 +24,20 @@
     <br>
     <select name="" id="currency3" class="currencies">
     </select> -->
+
+    <label for="results1"  id="currency1">▼</label>
+    <span id="results1">AAA</span><br>
+    <label for="results2"  id="currency2">▼</label>
+    <span id="results2">BBB</span>
+
     
     
     <dialog class="modal">
         <label for="searchPlace">Lupa</label>
-        <input type="text" name="Currency" id="searchPlace" placeholder="Pesquisar moeda" oninput="getFullCurrencies()"><br>
+        <input type="text" name="Currency" id="searchPlace" placeholder="Pesquisar moeda" oninput="data1()"><br>
         <div class="types">
-            <input type="button" value="Comuns" name="common" id= "commonType" onclick="getFullCurrencies()">
-            <input type="button" value="Cryptomoedas" name="crypto" id="cryptoType" onclick="getFullCurrencies()">
+            <input type="button" value="Comuns" name="common" id= "commonType" onclick="data1()">
+            <input type="button" value="Cryptomoedas" name="crypto" id="cryptoType" onclick="data1()">
         </div>
         <br>
         
@@ -40,7 +46,15 @@
     </dialog>
 <br><br><br><br><br><br><br>
 <br><br><br><br><br><br><br>
-    <dialog class="modal">
+<br><br><br><br><br><br><br>
+    <dialog class="modal">        
+        <label for="searchPlace2">Lupa</label>
+        <input type="text" name="Currency" id="searchPlace2" placeholder="Pesquisar moeda" oninput="data1()"><br>
+                <div class="types2">
+            <input type="button" value="Comuns" name="common" id= "commonType2" onclick="data1()">
+            <input type="button" value="Cryptomoedas" name="crypto" id="cryptoType2" onclick="data1()">
+        </div>
+        <br>
     <div class="currencies money2">
 
     </div>
