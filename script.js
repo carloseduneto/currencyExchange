@@ -379,6 +379,28 @@ async function data1() {
     showData2(alphabeticalData)
 }
 
+async function getCurrencyExcange2(exchange, exchange2, date){
+    date = "latest"
+    let endpoint = "currencies/"+exchange
+    const apiURL = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@${date}/${apiVersion}/${endpoint}.json`
+    const data = await fetchCurrenciesExchangeData(apiURL)
+    console.log("Aqui novo: ", data)
+    showResults2(data,exchange,exchange2)
+
+}
+// async function getCurrencyExcange1(exchange, exchange2, date){
+//     date = "latest"
+//     let endpoint = "currencies/"+exchange
+//     const apiURL = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@${date}/${apiVersion}/${endpoint}.json`
+//     const data = await fetchCurrenciesExchangeData(apiURL)
+//     console.log("Aqui novo: ", data)
+//     showResults1(data,exchange,exchange2)
+
+// }
+
+getCurrencyExcange2("brl", "usd")
+
+
 data1()
 /*
 async function getFullCurrencies() {
@@ -557,23 +579,54 @@ money1.addEventListener('click', function(event) {
 
 value1 = currencyExchange("eur", "usd", "latest")
 
-value2 = currencyExchange(buttonValueMoney2, buttonValueMoney1, "latest")
-console.log(value1)
+// value2 = currencyExchange(buttonValueMoney2, buttonValueMoney1, "latest")
+// console.log(value1)
 results1.innerHTML = value1
-results2.innerHTML = value2
+
+
+
 
 // Adiciona um event listener ao contêiner (money1)
 money2.addEventListener('click', function(event) {
-    // Verifica se o elemento clicado é um botão de entrada
-    if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
-        // Recupera o valor do botão clicado
-        buttonValueMoney2 = event.target.name;
-        // Exibe o valor no console
-        console.log('Botão clicado:', buttonValueMoney2);
-        currency2.innerHTML = "▼" + buttonValueMoney2
-    }
-});
+        // Verifica se o elemento clicado é um botão de entrada
+        if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
+            // Recupera o valor do botão clicado
+            buttonValueMoney2 = event.target.name;
+            // Exibe o valor no console
+            console.log('Botão clicado:', buttonValueMoney2);
+            currency2.innerHTML = "▼" + buttonValueMoney2
+        }
+    });
+    let coin1 = 3
+    let coin2 = 4
+function showResults2(data, exchange1, exchange2) {
 
+    let   input = "inputValue1"
+
+    console.log("Aqui again", data[exchange1][exchange2])
+    let value = data[exchange1][exchange2]
+
+    if(input == "inputValue1"){
+        //REAL
+        results2.innerHTML=exchange1    +((value/value)*coin1)
+        //DÓLAR
+        results1.innerHTML=exchange2 + ((1*coin1)/value)
+        coin2 = ((1*coin1)/value)
+    }else{
+        //REAL
+        results2.innerHTML=exchange1    +((1*coin2)/value)
+        //DÓLAR
+        results1.innerHTML=exchange2 + ((value/value)*coin2)
+        coin1 = ((1*coin2)/value)
+
+    }
+}
+function showResults1(data, exchange1, excahnge2) {
+    console.log("Aqui again", data[exchange1][excahnge2])
+    let value = data[exchange1][excahnge2]
+}
+
+// showResults2()
 
 function getType() {
     let commonType = document.getElementById("commonType")
