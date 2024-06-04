@@ -26,11 +26,14 @@
     </select> -->
 
     <label for="results1"  id="currency1">▼</label>
-    <span id="results1">AAA</span><br>
-    <label for="results2"  id="currency2">▼</label>
-    <span id="results2">BBB</span>
+    <!-- <span id="results1">AAA</span><br> -->
+    <input id="results1" class="results1" oninput="setValue1()" type="number" step="0.01" onkeydown="handleKey(event)"><br>
 
-    
+    <label for="results2"  id="currency2">▼</label>
+    <!-- <span id="results2">BBB</span> -->
+    <input type="number" id="results2" oninput="setValue2()" step="0.01">
+    <br>
+    <input type="text" id="sss">
     
     <dialog class="modal">
         <label for="searchPlace">Lupa</label>

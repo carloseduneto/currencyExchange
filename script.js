@@ -398,8 +398,11 @@ async function getCurrencyExcange2(exchange, exchange2, date){
 
 // }
 
-getCurrencyExcange2("brl", "usd")
 
+let c1 = "usd"
+let c2 = "brl"
+
+getCurrencyExcange2(c1, c2)
 
 data1()
 /*
@@ -597,27 +600,72 @@ money2.addEventListener('click', function(event) {
             currency2.innerHTML = "▼" + buttonValueMoney2
         }
     });
-    let coin1 = 3
-    let coin2 = 4
-function showResults2(data, exchange1, exchange2) {
+    let coin2 = 0
+    let coin1 = 0
+    let   input = ""
+    function setValue1() {
+        coin1 = parseFloat(document.getElementById("results1").value);
+        console.log(coin1); // Para verificar o valor atualizado
+        coin1 = coin1.toFixed(2)
+        input = "inputValue1"
+        getCurrencyExcange2(c1, c2)
+        
+    }
+    
+    function setValue2() {
+        coin2 = parseFloat(document.getElementById("results2").value) || 0;
+        coin2 = coin2.toFixed(2)
+        console.log(coin2); // Para verificar o valor atualizado
+        input = "inputValue2"
+        getCurrencyExcange2(c1, c2)
 
-    let   input = "inputValue1"
+    }
+
+    function handleKey(event) {
+        let input = event.target.value;
+
+        // Handle deletion
+        if (event.inputType === 'deleteContentBackward') {
+            if (input.length > 0) {
+                coin1 = parseFloat(coin1 / 10).toFixed(2);
+            } else {
+                coin1 = 0;
+            }
+        } else {
+            // Handle insertion
+            let newDigit = input[input.length - 1];
+            if (!isNaN(newDigit) && input.length <= 5) { // Limite de até 5 caracteres
+                coin1 = (coin1 * 10 + parseFloat(newDigit) / 100).toFixed(2);
+            }
+        }
+
+        // Update input value
+        event.target.value = parseFloat(coin1).toFixed(2);
+        console.log(coin1); // Para verificar o valor atualizado
+    }
+
+    console.log("Coin1",coin1)
+    document.getElementById("sss").value = 2
+    
+    function showResults2(data, exchange1, exchange2) {
+
+        console.log(coin1)
+        
+        console.log(input)
 
     console.log("Aqui again", data[exchange1][exchange2])
     let value = data[exchange1][exchange2]
 
     if(input == "inputValue1"){
         //REAL
-        results2.innerHTML=exchange1    +((value/value)*coin1)
-        //DÓLAR
-        results1.innerHTML=exchange2 + ((1*coin1)/value)
-        coin2 = ((1*coin1)/value)
-    }else{
-        //REAL
-        results2.innerHTML=exchange1    +((1*coin2)/value)
-        //DÓLAR
-        results1.innerHTML=exchange2 + ((value/value)*coin2)
-        coin1 = ((1*coin2)/value)
+        document.getElementById("results1").value = ((value/value)*coin1).toFixed(2)
+        document.getElementById("results2").value = ((value*coin1)).toFixed(2)
+        
+    }else if (input == "inputValue2"){
+        document.getElementById("results1").value = ((1*coin2)/value).toFixed(2)
+        document.getElementById("results2").value = ((value/value)*coin2).toFixed(2)
+
+        // coin1 = ((1*coin2)/value)
 
     }
 }
