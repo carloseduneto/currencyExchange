@@ -399,8 +399,8 @@ async function getCurrencyExcange2(exchange, exchange2, date){
 // }
 
 
-let c1 = "usd"
-let c2 = "brl"
+let c1 = "brl"
+let c2 = "usd"
 
 getCurrencyExcange2(c1, c2)
 
@@ -577,8 +577,22 @@ money1.addEventListener('click', function(event) {
         // Exibe o valor no console
         console.log('Botão clicado:', buttonValueMoney1);
         currency1.innerHTML = "▼"+ buttonValueMoney1
+
     }
+    getCurrencyExcange2(buttonValueMoney1.toLowerCase() || "brl", buttonValueMoney2.toLowerCase()|| "usd")
 });
+
+function reverse(){
+    let temp
+    let value1 = buttonValueMoney1.toLowerCase()
+    let value2 = buttonValueMoney2.toLowerCase()
+
+    temp = value1
+    value1 = value2
+    value2 = temp
+
+    getCurrencyExcange2(value1, value2)
+}
 
 value1 = currencyExchange("eur", "usd", "latest")
 
@@ -598,11 +612,15 @@ money2.addEventListener('click', function(event) {
             // Exibe o valor no console
             console.log('Botão clicado:', buttonValueMoney2);
             currency2.innerHTML = "▼" + buttonValueMoney2
+            buttonValueMoney2 = buttonValueMoney2.toLowerCase()
+
         }
+        getCurrencyExcange2(buttonValueMoney1.toLowerCase() || "brl", buttonValueMoney2.toLowerCase()|| "usd")
     });
     let coin2 = 0
     let coin1 = 0
     let   input = ""
+    
     function setValue1() {
         coin1 = parseFloat(document.getElementById("results1").value);
         console.log(coin1); // Para verificar o valor atualizado
@@ -621,7 +639,7 @@ money2.addEventListener('click', function(event) {
 
     }
 
-    function handleKey(event) {
+/*    function handleKey(event) {
         let input = event.target.value;
 
         // Handle deletion
@@ -642,7 +660,7 @@ money2.addEventListener('click', function(event) {
         // Update input value
         event.target.value = parseFloat(coin1).toFixed(2);
         console.log(coin1); // Para verificar o valor atualizado
-    }
+    }*/
 
     console.log("Coin1",coin1)
     document.getElementById("sss").value = 2
@@ -658,12 +676,12 @@ money2.addEventListener('click', function(event) {
 
     if(input == "inputValue1"){
         //REAL
-        document.getElementById("results1").value = ((value/value)*coin1).toFixed(2)
+        // document.getElementById("results1").value = ((value/value)*coin1).toFixed(2)
         document.getElementById("results2").value = ((value*coin1)).toFixed(2)
         
     }else if (input == "inputValue2"){
         document.getElementById("results1").value = ((1*coin2)/value).toFixed(2)
-        document.getElementById("results2").value = ((value/value)*coin2).toFixed(2)
+        // document.getElementById("results2").value = ((value/value)*coin2).toFixed(2)
 
         // coin1 = ((1*coin2)/value)
 
@@ -762,4 +780,67 @@ function getType2() {
         }
     });
 
+}
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    const input = document.getElementById('currencyInput');
+
+    input.addEventListener('input', (event) => {
+        let value = input.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+        if (value.length === 0) {
+            input.value = '0,00';
+            return;
+        }
+
+        // Remove zeros à esquerda
+        while (value.length > 1 && value.charAt(0) === '0') {
+            value = value.substring(1);
+        }
+
+        let formattedValue = (value / 100).toFixed(2).replace('.', ',');
+        if (value.length > 3) {
+            // Adiciona o separador de milhar
+            formattedValue = formattedValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        }
+
+        input.value = formattedValue;
+    });
+
+    input.addEventListener('keydown', (event) => {
+        if (event.key === 'Backspace') {
+            event.preventDefault();
+            let value = input.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+
+            if (value.length === 0) {
+                input.value = '0,00';
+                return;
+            }
+
+            value = value.substring(0, value.length - 1); // Remove o último dígito
+
+            if (value.length === 0) {
+                input.value = '0,00';
+            } else {
+                let formattedValue = (value / 100).toFixed(2).replace('.', ',');
+                if (value.length > 3) {
+                    // Adiciona o separador de milhar
+                    formattedValue = formattedValue.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+                }
+                input.value = formattedValue;
+            }
+        }
+    });
+
+    // Define o valor inicial
+    input.value = '0,00';
+});
+
+function start() {
+    results1.value=1.00
+    coin1 = parseFloat(document.getElementById("results1").value);
+    console.log(coin1); // Para verificar o valor atualizado
+    coin1 = coin1.toFixed(2)
+    input = "inputValue1"
+    getCurrencyExcange2(c1, c2)
 }
