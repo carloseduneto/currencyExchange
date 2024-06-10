@@ -181,15 +181,15 @@ let currencyExchangePTBR = {
 "PLN":"Zloty"
 }*/
 
-let buttonValue1 = ""
-let buttonValue2 = ""
+// let buttonValue1 = ""
+// let buttonValue2 = ""
 let currency1 = document.getElementById("currency1")
 let currency2 = document.getElementById("currency2")
 
 let results1 = document.getElementById("results1")
 let results2 = document.getElementById("results2")
-getType()
-getType2()
+// getType()
+// getType2()
 
 async function currencyExchange(exchange, exchange2, date) {
     // let date = "latest"; //or YYYY-MM-DD
@@ -400,13 +400,15 @@ async function getCurrencyExcange2(exchange, exchange2, date){
 
 // }
 
-
-let c1 = "brl"
-let c2 = "usd"
+/////////////////////////////////////////////
+//AAAAAAAAAAAAAAAAQUI//////////////
+////////////////////////////////////////////
+let c1 = "eur"
+let c2 = "brl"
 
 getCurrencyExcange2(c1, c2)
 
-data1()
+// data1()
 /*
 async function getFullCurrencies() {
     let Word = document.getElementById("searchPlace").value
@@ -511,59 +513,9 @@ async function getFullCurrencies() {
 
 
 
-function replaceJSONValues(json1, json2) {
-    const json2LowerCaseKeys = {}
-    for (let key in json2) {
-        json2LowerCaseKeys[key.toLowerCase()] = json2[key]
-    }
-
-    for (let key in json1) {
-        const keyLowerCase = key.toLowerCase()
-        if (json2LowerCaseKeys.hasOwnProperty(keyLowerCase)) {
-            json1[key] = json2LowerCaseKeys[key]
-        }
-    }
-}
 
 
-function inverterChavesValores(objeto) {
-    const novoObjeto = {};
-    for (const chave in objeto) {
-        if (objeto.hasOwnProperty(chave)) {
-            novoObjeto[objeto[chave]] = chave;
-        }
-    }
-    return novoObjeto;
-}
-
-
-
-function ordenarJSONAlfabeticamente(objeto) {
-    const chavesOrdenadas = Object.keys(objeto).sort();
-    const objetoOrdenado = {};
-    
-    chavesOrdenadas.forEach(chave => {
-        objetoOrdenado[chave] = objeto[chave];
-    });
-
-    return objetoOrdenado;
-}
-
-
-function replaceSpecialCharacter(texto) {
-  const charactersMap = {
-      'ã': 'a', 'á': 'a', 'à': 'a', 'â': 'a', 'ä': 'a',
-      'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
-      'í': 'i', 'ì': 'i', 'î': 'i', 'ï': 'i',
-      'ó': 'o', 'ò': 'o', 'ô': 'o', 'ö': 'o', 'õ': 'o',
-      'ú': 'u', 'ù': 'u', 'û': 'u', 'ü': 'u',
-      'ç': 'c', 'ñ': 'n'
-  };
-
-  return texto.split('').map(char => charactersMap[char] || char).join('');
-}
-
-
+/*
 // Seleciona o elemento dialog
 const money1 = document.querySelector('.money1');
 const money2 = document.querySelector(".money2")
@@ -618,11 +570,11 @@ money2.addEventListener('click', function(event) {
 
         }
         getCurrencyExcange2(buttonValueMoney1.toLowerCase() || "brl", buttonValueMoney2.toLowerCase()|| "usd")
-    });
+    });*/
     let coin2 = 0
     let coin1 = 0
     let   input = ""
-    
+/*    
     function setValue1() {
         coin1 = parseFloat(document.getElementById("results1").value);
         console.log(coin1); // Para verificar o valor atualizado
@@ -639,7 +591,7 @@ money2.addEventListener('click', function(event) {
         input = "inputValue2"
         getCurrencyExcange2(c1, c2)
 
-    }
+    }*/
 
 /*    function handleKey(event) {
         let input = event.target.value;
@@ -696,7 +648,7 @@ function showResults1(data, exchange1, excahnge2) {
 
 // showResults2()
 
-function getType() {
+/*function getType() {
     let commonType = document.getElementById("commonType")
     let cryptoType = document.getElementById("cryptoType")
     // Seleciona o elemento dialog
@@ -739,6 +691,7 @@ function getType() {
     });
 
 }
+
 
 function getType2() {
     let commonType2 = document.getElementById("commonType2")
@@ -783,8 +736,9 @@ function getType2() {
     });
 
 }
+*/
 
-
+/*
 document.addEventListener('DOMContentLoaded', (event) => {
     const input = document.getElementById('currencyInput');
 
@@ -836,7 +790,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
     // Define o valor inicial
     input.value = '0,00';
-});
+});*/
 
 function start() {
     results1.value=1.00
