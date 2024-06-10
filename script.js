@@ -2,6 +2,7 @@ let apiVersion = "v1"
 // câmbio monetário
 // exchange currency
 
+/*
 let currencyExchangePTBR = {
 "AFN":"Afegane Afegão",
 "MGA":"Ariary",
@@ -178,7 +179,7 @@ let currencyExchangePTBR = {
 "SOS":"Xelim somali",
 "UGX":"Xelim ugandês",
 "PLN":"Zloty"
-}
+}*/
 
 let buttonValue1 = ""
 let buttonValue2 = ""
@@ -229,6 +230,7 @@ currencyExchange("eur", "brl", "latest")
 
 // getFullCurrencies()
 
+/*
 async function fetchCurrenciesExchangeData(url) {
     try {
         const response = await fetch(url);
@@ -377,7 +379,7 @@ async function data1() {
     let alphabeticalData = ordenarJSONAlfabeticamente(reverseData)
     showData(alphabeticalData)
     showData2(alphabeticalData)
-}
+}*/
 
 async function getCurrencyExcange2(exchange, exchange2, date){
     date = "latest"
