@@ -3,7 +3,10 @@ let apiVersion = "v1"
 // exchange currency
 let currency1 = document.getElementById("currency1")
 let currency2 = document.getElementById("currency2")
-
+let coin2 = 0
+let coin1 = 0
+let   input = ""
+let coinTemp = 0
 
 async function fetchCurrenciesExchangeData(url) {
     try {
@@ -55,11 +58,12 @@ function showResults2(data, exchange1, exchange2) {
 }
 
 
+
 // Seleciona o elemento dialog
 const money1 = document.querySelector('.money1');
 const money2 = document.querySelector(".money2")
-let buttonValueMoney1
-let buttonValueMoney2
+let buttonValueMoney1 = "eur"
+let buttonValueMoney2 = "brl"
 
 // Adiciona um event listener ao contêiner (money1)
 money1.addEventListener('click', function(event) {
@@ -107,3 +111,36 @@ export function setValue2() {
     getCurrencyExcange2(c1, c2)
 
 }
+
+export function start() {
+    results1.value=1.00
+    coin1 = parseFloat(document.getElementById("results1").value);
+    console.log(coin1); // Para verificar o valor atualizado
+    coin1 = coin1.toFixed(2)
+    input = "inputValue1"
+    getCurrencyExcange2(c1, c2)
+}
+
+export function reverse(){
+    let temp
+    buttonValueMoney1 = buttonValueMoney1.toLowerCase()
+    buttonValueMoney2 = buttonValueMoney2.toLowerCase()
+
+
+    
+    temp = buttonValueMoney1
+    buttonValueMoney1 = buttonValueMoney2
+    buttonValueMoney2 = temp
+
+    currency1.innerHTML = "▼"+ buttonValueMoney1.toUpperCase()
+    currency2.innerHTML = "▼"+ buttonValueMoney2.toUpperCase()
+
+
+    getCurrencyExcange2(buttonValueMoney1, buttonValueMoney2)
+}
+
+
+// let today = new Date(today)
+
+
+// console.log(today)

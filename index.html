@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Currency Exchange</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+
+
     <link rel="stylesheet" href="style.css">
     <!-- Adicione esses links no <head> do seu HTML -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 </head>
+
 <body onload="start()">
     <div class="exchange"></div>
     <!-- <input list="currency1" oninput="changeCurrency1()" id="c1" placeholder="Selecione uma moeda">
@@ -25,47 +31,89 @@
     <select name="" id="currency3" class="currencies">
     </select> -->
 
-    <label for="results1"  id="currency1">▼EUR</label>
-    <!-- <span id="results1">AAA</span><br> -->
-    <input id="results1" class="results1" oninput="setValue1()" type="number" step="0.01" onkeydown="handleKey(event)"><br>
+    <div id="line-example-3">
+        <table class="charts-css line multiple show-data show-labels show-data-axes">
+            <caption> Line Example #3 </caption>
+            <thead>
+                <tr>
+                    <th scope="col"> Year </th>
+                    <th scope="col"> Progress 1 </th>
+                    <th scope="col"> Progress 2 </th>
+                    <th scope="col"> Progress 3 </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row" class="date"> 08/06 </th>
+                    <td style="--start: 0.1; --end: 0.5;"><span class="data"> 50 </span></td>
+                </tr>
+                <tr>
+                    <th scope="row"> 09/06</th>
+                    <td style="--start: 0.5; --end: 0.8;"><span class="data"> 40 </span></td>
+                </tr>
+                <tr>
+                    <th scope="row"> 10/06 </th>
+                    <td style="--start: 0.8; --end: 0.4;"><span class="data"> 40 </span></td>
+                </tr>
+                <tr>
+                    <th scope="row"> 11/06 </th>
+                    <td style="--start: 0.4; --end: 0.4; color: #000;;"><span class="data"> 50 </span></td>
+                </tr>
+                <tr>
+                    <div class="doodle">
+                        <span>EUR 1,00 = BRL 5,38</span>
+                    </>
 
-    <label for="results2"  id="currency2">▼BRL</label>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+
+    <label for="results1" id="currency1">▼EUR</label>
+    <!-- <span id="results1">AAA</span><br> -->
+    <input id="results1" class="results1" oninput="setValue1()" type="number" step="0.01"
+        onkeydown="handleKey(event)"><br>
+    <input type="button" value="Reverse" onclick="reverse()">
+    <br>
+
+    <label for="results2" id="currency2">▼BRL</label>
     <!-- <span id="results2">BBB</span> -->
     <input type="number" id="results2" oninput="setValue2()" step="0.01">
     <br>
 
-    <input type="button" value="Reverse" onclick="reverse()">
 
-    <input type="text" id="sss">
-    
+    <!-- <input type="text" id="sss"> -->
+
     <dialog class="modal">
         <label for="searchPlace">Lupa</label>
         <input type="text" name="Currency" id="searchPlace" placeholder="Pesquisar moeda" oninput="data1()"><br>
         <div class="types">
-            <input type="button" value="Comuns" name="common" id= "commonType" onclick="data1()">
+            <input type="button" value="Comuns" name="common" id="commonType" onclick="data1()">
             <input type="button" value="Cryptomoedas" name="crypto" id="cryptoType" onclick="data1()">
         </div>
         <br>
-        
-        <div class="money1 currencies">            
+
+        <div class="money1 currencies">
         </div>
     </dialog>
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
-<br><br><br><br><br><br><br>
-    <dialog class="modal">        
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
+    <dialog class="modal">
         <label for="searchPlace2">Lupa</label>
         <input type="text" name="Currency" id="searchPlace2" placeholder="Pesquisar moeda" oninput="data1()"><br>
-                <div class="types2">
-            <input type="button" value="Comuns" name="common" id= "commonType2" onclick="data1()">
+        <div class="types2">
+            <input type="button" value="Comuns" name="common" id="commonType2" onclick="data1()">
             <input type="button" value="Cryptomoedas" name="crypto" id="cryptoType2" onclick="data1()">
         </div>
         <br>
-    <div class="currencies money2">
+        <div class="currencies money2">
 
-    </div>
+        </div>
     </dialog>
-    
+
     <!-- <fieldset>
         <legend>Select a maintenance drone:</legend>
         <div id="currency4" class="currencies">
@@ -89,7 +137,7 @@
     </fieldset> -->
 
     <!-- <p id="selectedValue">Selected value: huey</p> -->
-<!-- <br>
+    <!-- <br>
     <input type="text" id="currencyInput" placeholder="0,00" /> -->
 
     <script src="script.js"></script>
@@ -99,4 +147,5 @@
     <!-- <a href="https://github.com/fawazahmed0/exchange-api">Powered by Currency-api</a> -->
 
 </body>
+
 </html>

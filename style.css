@@ -47,3 +47,74 @@ select {
     /* width: 200px; */
 }
 
+#line-example-3 {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  #line-example-3 .line {
+    --aspect-ratio: 21 / 9;
+    background-color: #f6f6f6;
+    color: #000;
+  }
+
+  .charts-css {
+    --color-1: rgba(0, 0, 0, 0.75);
+  }
+
+.date{
+    background-color: aqua
+}
+
+.charts-css.line.show-labels tbody tr th {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-box-align: var(--labels-align-inline, center);
+    -ms-flex-align: var(--labels-align-inline, center);
+    align-items: var(--labels-align-inline, end);
+    /* background-color: aquamarine; */
+    /* width: 60px; */
+    position: relative;
+    left: 50px;
+
+}
+
+.doodle{
+    background-color: rgb(151, 151, 151);
+    position: relative;
+    font-weight: 600;
+    width: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 40px;
+    left: 220px;
+    z-index: 10;
+
+}
+
+.doodle::before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 30px solid rgb(151, 151, 151);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    position: absolute;
+    top: 15px; /* Ajuste conforme necessário para centralizar */
+    border-radius: 0px; /* Arredondar as bordas */
+}
+
+.doodle::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-top: 35px solid black; /* Espaço para a borda */
+    border-left: 23px solid transparent;
+    border-right: 23px solid transparent;
+    /* border-bottom: 52px solid black; A cor da borda */
+    position: absolute;
+    top: 16px; /* Ajuste conforme necessário para centralizar */
+    border-radius: 5px; /* Arredondar as bordas */
+    z-index: -1; /* Colocar atrás do triângulo principal */
+}

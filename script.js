@@ -183,11 +183,11 @@ let currencyExchangePTBR = {
 
 // let buttonValue1 = ""
 // let buttonValue2 = ""
-let currency1 = document.getElementById("currency1")
-let currency2 = document.getElementById("currency2")
+// let currency1 = document.getElementById("currency1")
+// let currency2 = document.getElementById("currency2")
 
-let results1 = document.getElementById("results1")
-let results2 = document.getElementById("results2")
+// let results1 = document.getElementById("results1")
+// let results2 = document.getElementById("results2")
 // getType()
 // getType2()
 
@@ -211,14 +211,15 @@ async function currencyExchange(exchange, exchange2, date) {
 }
 let currentDate = new Date()
 
+let day_1 = new Date(currentDate)
+day_1.setDate(currentDate.getDate()-1)
 
-function registrySearch() {
 
+let day_2 = new Date(currentDate)
+day_2.setDate(currentDate.getDate()-2)
 
-}
-
-let date1 = `${(currentDate.getFullYear())}-0${(currentDate.getMonth())}-${(currentDate.getDate())-2}`
-let date2 = `${(currentDate.getFullYear())}-0${(currentDate.getMonth())}-${(currentDate.getDate())-1}`
+let date1 = `${(day_2.getFullYear())}-0${(day_2.getMonth())}-0${(day_2.getDate())}`
+let date2 = `${(day_1.getFullYear())}-0${(day_1.getMonth())}-${(day_1.getDate())}`
 let date3 = `${(currentDate.getFullYear())}-0${(currentDate.getMonth())}-${(currentDate.getDate())}`
 console.log(date1, date2, date3)
 
@@ -571,9 +572,10 @@ money2.addEventListener('click', function(event) {
         }
         getCurrencyExcange2(buttonValueMoney1.toLowerCase() || "brl", buttonValueMoney2.toLowerCase()|| "usd")
     });*/
+    /*
     let coin2 = 0
     let coin1 = 0
-    let   input = ""
+    let   input = ""*/
 /*    
     function setValue1() {
         coin1 = parseFloat(document.getElementById("results1").value);
@@ -615,7 +617,7 @@ money2.addEventListener('click', function(event) {
         event.target.value = parseFloat(coin1).toFixed(2);
         console.log(coin1); // Para verificar o valor atualizado
     }*/
-
+/*
     console.log("Coin1",coin1)
     document.getElementById("sss").value = 2
     
@@ -641,10 +643,12 @@ money2.addEventListener('click', function(event) {
 
     }
 }
+*/
+/*
 function showResults1(data, exchange1, excahnge2) {
     console.log("Aqui again", data[exchange1][excahnge2])
     let value = data[exchange1][excahnge2]
-}
+}*/
 
 // showResults2()
 
@@ -791,7 +795,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     // Define o valor inicial
     input.value = '0,00';
 });*/
-
+/*
 function start() {
     results1.value=1.00
     coin1 = parseFloat(document.getElementById("results1").value);
@@ -799,4 +803,4 @@ function start() {
     coin1 = coin1.toFixed(2)
     input = "inputValue1"
     getCurrencyExcange2(c1, c2)
-}
+}*/
