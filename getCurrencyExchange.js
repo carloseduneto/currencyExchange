@@ -16,6 +16,8 @@ let daysAgo = []
 let percentualChart = []
 let currency1 = document.getElementById("currency1")
 let currency2 = document.getElementById("currency2")
+let chartData = document.getElementById("chartData")
+let chartInfo = ""
 let coin2 = 0
 let coin1 = 0
 let   input = ""
@@ -43,7 +45,8 @@ function diasAtras(dias) {
   daysAgo.push(formatarData(diasAtras(0)));  
 daysAgo.push(formatarData(diasAtras(1)));
 daysAgo.push(formatarData(diasAtras(2)));
-daysAgo.push(formatarData(diasAtras(3)));daysAgo.push(formatarData(diasAtras(4)));
+daysAgo.push(formatarData(diasAtras(3)));
+daysAgo.push(formatarData(diasAtras(4)));
   
   // Formatando as datas
   console.log('2 dias atrás:', daysAgo[0]);
@@ -75,11 +78,12 @@ export async function getCurrencyExcange2(exchange, exchange2, date) {
 }
 
 export async function getCurrencyChart(exchange, exchange2, date) {
-    if (valuesDaysAgo.length== daysAgo.length) {
+    if (valuesDaysAgo.length== daysAgo.length || daysAgo.length <= percentualChart.length) {
         valuesDaysAgo = []
+        percentualChart = []
+        chartInfo = ""
     }
     for (let index = 0; index < daysAgo.length; index++) {
-        
         date = daysAgo[index]
         let endpoint = "currencies/" + exchange
         const apiURL = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@${date}/${apiVersion}/${endpoint}.json`
@@ -89,11 +93,38 @@ export async function getCurrencyChart(exchange, exchange2, date) {
         
         let percentual = (valuesDaysAgo[index]/valuesDaysAgo[0])-0.5
         percentualChart.push(percentual)
+        
+        
     }
+    for (let index = 0; index < percentualChart.length; index++) {
+        if (index == 0){
+            chartInfo += `<tr>
+                        <th scope="row"> ${daysAgo[index]} </th>
+                        <td style="--start: 0.5}; --end: ${percentualChart[index]};"><span class="data"> ${valuesDaysAgo[index].toFixed(2)} </span></td>
+                    </tr> `        
+        }else{
+            chartInfo += `<tr>
+                        <th scope="row"> ${daysAgo[index]} </th>
+                        <td style="--start: ${percentualChart[index-1]}; --end: ${percentualChart[index]};"><span class="data"> ${valuesDaysAgo[index].toFixed(2)} </span></td>
+                    </tr> `
+        }
+
+
+    }
+    chartInfo += "<tr></tr>"
+
     console.log(valuesDaysAgo)
     console.log(daysAgo)
     console.log(percentualChart)
+    chartData.innerHTML=chartInfo
 }
+
+let vare = `
+vdfvd
+sdvfdv
+dsfcvfds
+fdvd
+`
 
 function showResults2(data, exchange1, exchange2) {
 
