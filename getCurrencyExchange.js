@@ -40,14 +40,27 @@ function diasAtras(dias) {
     const dia = String(data.getDate()).padStart(2, '0');
     return `${ano}-${mes}-${dia}`;
   }
+
+function formatDayMonth(date){
+    let partesData = date.split('-');
+    let dataFormatada = partesData[2] + '/' + partesData[1];
+    return dataFormatada
+}
   
   // Calculando as datas
-  daysAgo.push(formatarData(diasAtras(0)));  
-daysAgo.push(formatarData(diasAtras(1)));
-daysAgo.push(formatarData(diasAtras(2)));
-daysAgo.push(formatarData(diasAtras(3)));
-daysAgo.push(formatarData(diasAtras(4)));
-  
+// daysAgo.push(formatarData(diasAtras(5)));  
+// daysAgo.push(formatarData(diasAtras(4)));  
+// daysAgo.push(formatarData(diasAtras(3)));
+// daysAgo.push(formatarData(diasAtras(2)));
+// daysAgo.push(formatarData(diasAtras(1)));
+// daysAgo.push(formatarData(diasAtras(0)));
+
+for (let i = 4; i >= 0; i--) {
+    console.log(i)
+    daysAgo.push(formatarData(diasAtras(i)));
+    
+}
+
   // Formatando as datas
   console.log('2 dias atrás:', daysAgo[0]);
   console.log('3 dias atrás:', daysAgo[1]);
@@ -99,19 +112,25 @@ export async function getCurrencyChart(exchange, exchange2, date) {
     for (let index = 0; index < percentualChart.length; index++) {
         if (index == 0){
             chartInfo += `<tr>
-                        <th scope="row"> ${daysAgo[index]} </th>
+                        <th scope="row"> ${formatDayMonth(daysAgo[index])} </th>
                         <td style="--start: 0.5}; --end: ${percentualChart[index]};"><span class="data"> ${valuesDaysAgo[index].toFixed(2)} </span></td>
-                    </tr> `        
+                    </tr> `  
+                          
         }else{
             chartInfo += `<tr>
-                        <th scope="row"> ${daysAgo[index]} </th>
-                        <td style="--start: ${percentualChart[index-1]}; --end: ${percentualChart[index]};"><span class="data"> ${valuesDaysAgo[index].toFixed(2)} </span></td>
+                        <th scope="row"> ${formatDayMonth(daysAgo[index])} </th>
+                        <td style="--start: ${percentualChart[index-1]}; --end: ${percentualChart[index]};"><span class="data">
+                         ${valuesDaysAgo[index].toFixed(2)} </span></td>
                     </tr> `
         }
 
 
     }
     chartInfo += "<tr></tr>"
+
+
+    let doodle = document.getElementById("doodle")
+doodle.innerHTML = `${buttonValueMoney1.toUpperCase()} 1,00 = ${buttonValueMoney2.toUpperCase()} ${valuesDaysAgo[4].toFixed(2)}`
 
     console.log(valuesDaysAgo)
     console.log(daysAgo)
@@ -170,6 +189,9 @@ money1.addEventListener('click', function(event) {
 
     }
     getCurrencyExcange2(buttonValueMoney1.toLowerCase() || "eur", buttonValueMoney2.toLowerCase()|| "brl")
+
+    getCurrencyChart(buttonValueMoney1.toLowerCase() || "eur", buttonValueMoney2.toLowerCase()|| "brl")
+
 });
 
 // Adiciona um event listener ao contêiner (money1)
@@ -185,6 +207,8 @@ money2.addEventListener('click', function(event) {
 
     }
     getCurrencyExcange2(buttonValueMoney1.toLowerCase() || "eur", buttonValueMoney2.toLowerCase()|| "brl")
+
+    getCurrencyChart(buttonValueMoney1.toLowerCase() || "eur", buttonValueMoney2.toLowerCase()|| "brl")
 });
 
 
@@ -239,3 +263,4 @@ export function reverse(){
     getCurrencyExcange2(buttonValueMoney1, buttonValueMoney2)
     getCurrencyChart(buttonValueMoney1, buttonValueMoney2)
 }
+
