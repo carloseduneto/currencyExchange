@@ -14,6 +14,10 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+
 </head>
 
 <body onload="start()">
@@ -91,12 +95,18 @@
     <!-- <input type="text" id="sss"> -->
 
     <dialog class="modal">
-        <label for="searchPlace">Lupa</label>
-        <input type="text" name="Currency" id="searchPlace" placeholder="Pesquisar moeda" oninput="data1()"><br>
-        <div class="types">
+        <div class="upperPlaceBox">
+
+            <div class="row">
+
+                <label for="searchPlace">Lupa</label>
+                <input type="text" name="Currency" id="searchPlace" placeholder="Pesquisar moeda" oninput="data1()"> <br><br>
+            </div>
+                <div class="types row">
             <input type="button" value="Comuns" name="common" id="commonType" onclick="data1()">
             <input type="button" value="Cryptomoedas" name="crypto" id="cryptoType" onclick="data1()">
         </div>
+    </div>
         <br>
 
         <div class="money1 currencies">

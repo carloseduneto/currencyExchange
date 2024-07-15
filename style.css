@@ -6,6 +6,27 @@ input::after {
     clip-path: polygon(100% 0%, 0 0%, 50% 100%);
 }
 
+*{
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.upperPlaceBox{
+    position: fixed;
+    background-color: aliceblue;
+    display: flex;
+    width: 75vw;
+    flex-direction: column;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+}
 
 input {
     background-color: aliceblue;
@@ -13,6 +34,10 @@ input {
 
 select {
     width: 300px;
+}
+
+.money1{
+    margin-top: 100px;
 }
 
 .select2-container--default .select2-selection--single {
