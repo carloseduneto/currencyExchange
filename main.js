@@ -6,6 +6,8 @@ import { setValue2 } from "./getCurrencyExchange.js";
 import { start } from "./getCurrencyExchange.js";
 import { reverse } from "./getCurrencyExchange.js";
 
+import * as jsStyle from "./show.js"
+
 dialog.data1();
 dialog.getType();
 dialog.getType2();
@@ -19,4 +21,4 @@ window.setValue2 = setValue2
 window.start = start
 window.reverse = reverse
 
-
+jsStyle.window();

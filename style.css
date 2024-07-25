@@ -12,11 +12,17 @@ input::after {
     font-style: normal;
 }
 
+.topFlexBox{
+    display: flex;
+    background-color: aqua;
+    width:100%;
+}
+
 .upperPlaceBox{
     position: fixed;
     background-color: aliceblue;
     display: flex;
-    width: 75vw;
+    width: 80vh;
     flex-direction: column;
     left: 50%;
     top: 50%;
@@ -144,4 +150,21 @@ select {
     top: 25px; /* Ajuste conforme necessário para centralizar */
     border-radius: 5px; /* Arredondar as bordas */
     z-index: -1; /* Colocar atrás do triângulo principal */
+}
+
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.centralizado {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    background-color: lightblue;
+    text-align: center;
+    line-height: 200px; /* Alinhamento vertical de texto */
 }
