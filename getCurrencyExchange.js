@@ -203,6 +203,7 @@ money10.forEach(money1Button => {
         // Remove a classe 'ativo' de todos os botões
         money10.forEach(btn => btn.classList.remove(classeAtivo));
         // Adiciona a classe 'ativo' ao botão clicado
+        console.log("Add class")
         money1Button.classList.add(classeAtivo);
 
     });
