@@ -14,24 +14,75 @@ input::after {
 
 .topFlexBox{
     display: flex;
-    background-color: aqua;
+    /* background-color: aqua; */
     width:100%;
+    justify-content: center;
+}
+
+.selectedExchange{
+    font-weight: bold;
+}
+
+.types{
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+.typeButton{
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: #fff;
+    padding: 5px;
+}
+
+#searchPlace{
+    height: 5vh;
+    border: none;
+    background-color: #EFEFEF;
+    padding-left: 5px;
+    margin-left: 5px;
+    color: #8A8A8A;
+}
+
+#searchPlace:focus {
+    border: 2px solid none;
+    outline: none; /* Opcional: remove a borda padrão do navegador */
 }
 
 .upperPlaceBox{
-    position: fixed;
-    background-color: aliceblue;
+    /* position: fixed; */
+    /* background-color: aliceblue; */
     display: flex;
     width: 80vh;
     flex-direction: column;
-    left: 50%;
+    /* left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
 }
 
 .row{
     display: flex;
     flex-direction: row;
+
+}
+
+.searchPlace2{
+    /* background-color: violet; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.searchRounded{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #EFEFEF;
+    width: 50vw;
+    border-radius: 10px;
+    height: 10vh;
+
 }
 
 input {
@@ -42,9 +93,9 @@ select {
     width: 300px;
 }
 
-.money1{
+/* .money1{
     margin-top: 100px;
-}
+} */
 
 .select2-container--default .select2-selection--single {
     background-color: #f8f9fa;
@@ -152,19 +203,3 @@ select {
     z-index: -1; /* Colocar atrás do triângulo principal */
 }
 
-.flex-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-}
-
-.centralizado {
-    position: fixed;
-    width: 200px;
-    height: 200px;
-    background-color: lightblue;
-    text-align: center;
-    line-height: 200px; /* Alinhamento vertical de texto */
-}

@@ -174,8 +174,8 @@ function showResults2(data, exchange1, exchange2) {
 // Seleciona o elemento dialog
 const money1 = document.querySelector('.money1');
 const money2 = document.querySelector(".money2")
-let buttonValueMoney1 = "eur"
-let buttonValueMoney2 = "brl"
+export let buttonValueMoney1 = "eur"
+export let buttonValueMoney2 = "brl"
 
 // Adiciona um event listener ao contêiner (money1)
 money1.addEventListener('click', function(event) {
@@ -188,13 +188,28 @@ money1.addEventListener('click', function(event) {
         currency1.innerHTML = "▼"+ buttonValueMoney1
 
     }
+
     getCurrencyExcange2(buttonValueMoney1.toLowerCase() || "eur", buttonValueMoney2.toLowerCase()|| "brl")
 
     getCurrencyChart(buttonValueMoney1.toLowerCase() || "eur", buttonValueMoney2.toLowerCase()|| "brl")
 
 });
 
-// Adiciona um event listener ao contêiner (money1)
+const money10 = document.querySelectorAll('.button');
+const classeAtivo = "selectedExchange"
+
+money10.forEach(money1Button => {
+    money1Button.addEventListener('click', () => {
+        // Remove a classe 'ativo' de todos os botões
+        money10.forEach(btn => btn.classList.remove(classeAtivo));
+        // Adiciona a classe 'ativo' ao botão clicado
+        money1Button.classList.add(classeAtivo);
+
+    });
+});
+
+
+// Adiciona um event listener ao contêiner (money10)
 money2.addEventListener('click', function(event) {
     // Verifica se o elemento clicado é um botão de entrada
     if (event.target.tagName === 'INPUT' && event.target.type === 'button') {

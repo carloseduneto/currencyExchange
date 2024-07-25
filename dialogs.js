@@ -1,7 +1,7 @@
 let apiVersion = "v1"
 export let buttonValue1 = ""
 export let buttonValue2 = ""
-
+import { buttonValueMoney1 } from "./getCurrencyExchange.js";
 
 let currencyExchangePTBR = {
     "AFN": "Afegane Afegão",
@@ -217,6 +217,10 @@ function showData(data) {
 
             } else {
                 options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br> <hr>`
+
+                if(buttonValueMoney1.toLocaleUpperCase() == keys){
+                    options += `<input type="button" value="●${(values)}" name="${(keys)}" class="button"> <br> <hr>`
+                }
             }
 
 
@@ -242,6 +246,8 @@ function showData(data) {
     currencies[0].innerHTML = options
 
 }
+
+console.log("Botão 1: ", buttonValueMoney1.toLocaleUpperCase())
 
 function showData2(data) {
     let Word = document.getElementById("searchPlace2").value
@@ -328,7 +334,6 @@ export async function data1() {
     let alphabeticalData = ordenarJSONAlfabeticamente(reverseData)
     showData(alphabeticalData)
     showData2(alphabeticalData)
-    console.log("money, money, money")
 }
 
 export function getType() {
@@ -351,22 +356,26 @@ export function getType() {
 
             if (commonType.name == "common" && buttonValue1 == "common") {
                 commonType.name = "all"
-                commonType.style.backgroundColor = "black"
-                commonType.style.color = "white"
+                commonType.style.backgroundColor = "#C9FA75"
+                commonType.style.color = "black"
+                commonType.style.fontWeight="bold"
             } else if (commonType.name == "all" && (buttonValue1 == "all" || buttonValue1 == "crypto")) {
                 commonType.name = "common"
-                commonType.style.backgroundColor = "#e7eef5"
+                commonType.style.backgroundColor = "#fff"
                 commonType.style.color = "black"
+                commonType.style.fontWeight="100"
             }
 
             if (cryptoType.name == "crypto" && buttonValue1 == "crypto") {
                 cryptoType.name = "all"
-                cryptoType.style.backgroundColor = "black"
-                cryptoType.style.color = "white"
+                cryptoType.style.backgroundColor = "#C9FA75"
+                cryptoType.style.color = "black"
+                cryptoType.style.fontWeight="bold"
             } else if (cryptoType.name == "all" && (buttonValue1 == "all" || buttonValue1 == "common")) {
                 cryptoType.name = "crypto"
-                cryptoType.style.backgroundColor = "#e7eef5"
+                cryptoType.style.backgroundColor = "#fff"
                 cryptoType.style.color = "black"
+                cryptoType.style.fontWeight="100"
             }
 
 
