@@ -10,6 +10,31 @@ input::after {
     font-family: "Ubuntu", sans-serif;
     font-weight: 300;
     font-style: normal;
+    /* margin: 0; */
+    /* font-size: medium; */
+}
+
+.currencyTitle{
+    font-size: 30px;
+
+}
+
+.allResults{
+    display: flex;
+    justify-content: center;
+}
+
+.valuesResults{
+    font-size: 50px;
+    background-color: #f8f9fa;
+    width: 30vw;
+    border: none;
+}
+
+.topChart{
+    background-color: #E1E4DF;
+    height: 40vh;
+    padding-top: 5vh;
 }
 
 .topFlexBox{
@@ -43,6 +68,7 @@ input::after {
 
 #searchPlace{
     height: 5vh;
+    width: 30vw;
     border: none;
     background-color: #EFEFEF;
     padding-left: 5px;
@@ -86,6 +112,7 @@ input::after {
     border: none;
     width: 100%;
     text-align: left;
+
 }
 
 .searchRounded{
@@ -129,7 +156,7 @@ select {
     display: block;
     border: none;
     background-color: #ffffff;
-    width: 80vw;
+    width: 60vw;
     height: 50vh;
     overflow-y: auto;
     overflow-x: hidden;
@@ -150,7 +177,7 @@ select {
   }
   #line-example-3 .line {
     --aspect-ratio: 21 / 9;
-    background-color: #f6f6f6;
+    background-color: #E1E4DF;
     color: #000;
   }
 
@@ -176,7 +203,7 @@ select {
 }
 
 .doodle{
-    background-color: rgb(151, 151, 151);
+    background-color:#C9FA75;
     position: relative;
     font-weight: 600;
     width: 195px;
@@ -195,7 +222,7 @@ select {
     content: '';
     width: 0;
     height: 0;
-    border-top: 20px solid rgb(151, 151, 151);
+    border-top: 20px solid #C9FA75;
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
     position: absolute;
@@ -217,3 +244,21 @@ select {
     z-index: -1; /* Colocar atrás do triângulo principal */
 }
 
+@media (min-width: 800px) {
+    .modal{
+        width: 30vw;
+    }
+    #searchPlace{
+        width: 17vw;
+    }
+
+    .searchRounded{
+        width: 25vw;
+    }
+}
+
+@media (max-width: 400px){
+    #searchPlace{
+        width: 20vw;
+    }
+}

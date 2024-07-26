@@ -205,18 +205,18 @@ function showData(data) {
 
             if (type == "common") {
                 if (currencyExchangePTBR.hasOwnProperty(keys) && (PTBRValues).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
-                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="buttonCurrency" id="button${(keys)}"> <br><hr class="line">`
+                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="buttonCurrency" id="button${(keys)}"> <br><hr class="line2">`
                     commonCount += 1
                 }
 
             } else if (type == "crypto") {
                 if (!currencyExchangePTBR.hasOwnProperty(keys) && (values).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
-                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="buttonCurrency" id="button${(keys)}"> <br><hr class="line">`
+                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="buttonCurrency" id="button${(keys)}"> <br><hr class="line2">`
                     cryptoCount += 1
                 }
 
             } else {
-                options += `<input type="button" value="${(values)}" name="${(keys)}" class="buttonCurrency" id="button${(keys)}"> <br> <hr class="line">`
+                options += `<input type="button" value="${(values)}" name="${(keys)}" class="buttonCurrency" id="button${(keys)}"> <br> <hr class="line2">`
 
                 /*if(buttonValueMoney1.toLocaleUpperCase() == keys){
                     options += `<input type="button" value="●${(values)}" name="${(keys)}" class="button"> <br> <hr>`

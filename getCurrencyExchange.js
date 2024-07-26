@@ -203,7 +203,7 @@ money1.addEventListener('click', function(event) {
 
         // Exibe o valor no console
         console.log('Botão clicado:', buttonValueMoney1);
-        currency1.innerHTML = "▼"+ buttonValueMoney1
+        currency1.innerHTML = buttonValueMoney1 + "▼"
 
     }
 
@@ -223,7 +223,7 @@ money2.addEventListener('click', function(event) {
         buttonValueMoney2 = event.target.name;
         // Exibe o valor no console
         console.log('Botão clicado:', buttonValueMoney2);
-        currency2.innerHTML = "▼" + buttonValueMoney2
+        currency2.innerHTML = buttonValueMoney2 + "▼"
         buttonValueMoney2 = buttonValueMoney2.toLowerCase()
 
     }
@@ -277,8 +277,8 @@ export function reverse(){
     buttonValueMoney1 = buttonValueMoney2
     buttonValueMoney2 = temp
 
-    currency1.innerHTML = "▼"+ buttonValueMoney1.toUpperCase()
-    currency2.innerHTML = "▼"+ buttonValueMoney2.toUpperCase()
+    currency1.innerHTML = buttonValueMoney1.toUpperCase() + "▼"
+    currency2.innerHTML = buttonValueMoney2.toUpperCase() + "▼"
 
 
     getCurrencyExcange2(buttonValueMoney1, buttonValueMoney2)
