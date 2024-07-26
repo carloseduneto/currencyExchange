@@ -205,22 +205,22 @@ function showData(data) {
 
             if (type == "common") {
                 if (currencyExchangePTBR.hasOwnProperty(keys) && (PTBRValues).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
-                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
+                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="buttonCurrency" id="button${(keys)}"> <br><hr class="line">`
                     commonCount += 1
                 }
 
             } else if (type == "crypto") {
                 if (!currencyExchangePTBR.hasOwnProperty(keys) && (values).toUpperCase().includes(searchWord.toLocaleUpperCase())) {
-                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br>`
+                    options += `<input type="button" value="${(values)}" name="${(keys)}" class="buttonCurrency" id="button${(keys)}"> <br><hr class="line">`
                     cryptoCount += 1
                 }
 
             } else {
-                options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br> <hr>`
+                options += `<input type="button" value="${(values)}" name="${(keys)}" class="buttonCurrency" id="button${(keys)}"> <br> <hr class="line">`
 
-                if(buttonValueMoney1.toLocaleUpperCase() == keys){
+                /*if(buttonValueMoney1.toLocaleUpperCase() == keys){
                     options += `<input type="button" value="●${(values)}" name="${(keys)}" class="button"> <br> <hr>`
-                }
+                }*/
             }
 
 
@@ -231,6 +231,9 @@ function showData(data) {
 
 
     }
+
+   
+
     console.log(count)
     console.log(commonCount)
     console.log(cryptoCount)
@@ -284,7 +287,7 @@ function showData2(data) {
                 }
 
             } else {
-                options += `<input type="button" value="${(values)}" name="${(keys)}" class="button"> <br> <hr>`
+                options += `<input type="button" value="${(values)}" name="${(keys)}" class="button" > <br> <hr>`
             }
 
 
@@ -475,4 +478,6 @@ function inverterChavesValores(objeto) {
     }
     return novoObjeto;
 }
+
+
 

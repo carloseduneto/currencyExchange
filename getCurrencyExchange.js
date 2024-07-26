@@ -113,7 +113,7 @@ export async function getCurrencyChart(exchange, exchange2, date) {
         if (index == 0){
             chartInfo += `<tr>
                         <th scope="row"> ${formatDayMonth(daysAgo[index])} </th>
-                        <td style="--start: 0.5}; --end: ${percentualChart[index]};"><span class="data"> ${valuesDaysAgo[index].toFixed(2)} </span></td>
+                        <td style="--start: 0.5; --end: ${percentualChart[index]};"><span class="data"> ${valuesDaysAgo[index].toFixed(2)} </span></td>
                     </tr> `  
                           
         }else{
@@ -154,7 +154,7 @@ function showResults2(data, exchange1, exchange2) {
     console.log("Aqui again", data[exchange1][exchange2])
     let value = data[exchange1][exchange2]
 
-    console.log("Caso do acaso", value)
+
 
     if (input == "inputValue1") {
         //REAL
@@ -176,13 +176,31 @@ const money1 = document.querySelector('.money1');
 const money2 = document.querySelector(".money2")
 export let buttonValueMoney1 = "eur"
 export let buttonValueMoney2 = "brl"
-
+let SelectId1 = ""
+let SelectValue1 = ""
 // Adiciona um event listener ao contêiner (money1)
 money1.addEventListener('click', function(event) {
     // Verifica se o elemento clicado é um botão de entrada
     if (event.target.tagName === 'INPUT' && event.target.type === 'button') {
         // Recupera o valor do botão clicado
         buttonValueMoney1 = event.target.name;
+        if (SelectId1 != event.target.id) {
+            let element = document.getElementById(SelectId1);
+            if (element) {
+                element.classList.remove("selectedExchange");
+                element.value = SelectValue1
+            }
+        }
+        
+        if(event.target.value != ("●"+SelectValue1)){
+        console.error(event.target.value)
+        SelectId1 = event.target.id
+        SelectValue1 = event.target.value
+        event.target.value = "●"+SelectValue1
+        event.target.classList.add("selectedExchange");
+        }
+
+
         // Exibe o valor no console
         console.log('Botão clicado:', buttonValueMoney1);
         currency1.innerHTML = "▼"+ buttonValueMoney1
@@ -195,19 +213,6 @@ money1.addEventListener('click', function(event) {
 
 });
 
-const money10 = document.querySelectorAll('.button');
-const classeAtivo = "selectedExchange"
-
-money10.forEach(money1Button => {
-    money1Button.addEventListener('click', () => {
-        // Remove a classe 'ativo' de todos os botões
-        money10.forEach(btn => btn.classList.remove(classeAtivo));
-        // Adiciona a classe 'ativo' ao botão clicado
-        console.log("Add class")
-        money1Button.classList.add(classeAtivo);
-
-    });
-});
 
 
 // Adiciona um event listener ao contêiner (money10)

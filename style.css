@@ -28,6 +28,12 @@ input::after {
     margin-top: 10px;
 }
 
+.line2{
+    border: 0;
+    height: 2px; 
+    background-color: rgb(59, 59, 59);
+}
+
 .typeButton{
     border: solid 2px black;
     border-radius: 10px;
@@ -74,6 +80,14 @@ input::after {
 
 }
 
+.buttonCurrency{
+    background-color: rgba(255, 255, 255, 0);
+    height: 30px;
+    border: none;
+    width: 100%;
+    text-align: left;
+}
+
 .searchRounded{
     display: flex;
     align-items: center;
@@ -114,7 +128,7 @@ select {
 .modal {
     display: block;
     border: none;
-    background-color: #ced4da;
+    background-color: #ffffff;
     width: 80vw;
     height: 50vh;
     overflow-y: auto;
