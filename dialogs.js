@@ -3,6 +3,20 @@ export let buttonValue1 = ""
 export let buttonValue2 = ""
 import { buttonValueMoney1 } from "./getCurrencyExchange.js";
 
+// document.querySelector('.reverseButton').addEventListener('click', function() {
+//     this.classList.toggle('active');
+// });
+
+document.querySelector('.reverseButton').addEventListener('mousedown', function() {
+    this.classList.add('active');
+});
+
+document.querySelector('.reverseButton').addEventListener('mouseup', function() {
+    this.classList.remove('active');
+});
+
+
+
 let currencyExchangePTBR = {
     "AFN": "Afegane Afegão",
     "MGA": "Ariary",
