@@ -16,7 +16,6 @@ input::after {
 
 .currencyTitle{
     font-size: 30px;
-
 }
 
 .allResults{
@@ -294,7 +293,7 @@ select {
 }
 
 .reverseButton:active{
-    top:-5px;
+    top: -10px;
 }
 
 .reverseButton.active::before {
